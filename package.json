@@ -1,0 +1,67 @@
+{
+  "name": "grphql-nodejs-application-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "yarn eslint '*.js' 'api/**.js' 'api/**/*.js' 'tests/*.js' 'tests/**/*.js' 'prisma/*.js'",
+    "start": "env-cmd -f ./config/local.env babel-node api/index.js",
+    "start.docker": "env-cmd -f ./config/docker.env nodemon api/index.js --ext js,graphql --exec babel-node",
+    "start.dev": "env-cmd -f ./config/dev.env nodemon api/index.js --ext js,graphql --exec babel-node",
+    "local": "env-cmd -f ./config/local.env nodemon api/index.js --ext js,graphql --exec babel-node",
+    "test": "env-cmd -f ./config/test.env jest --detectOpenHandles --runInBand",
+    "prisma-deploy": "env-cmd -f ./config/local.env prisma deploy",
+    "prisma-delete": "env-cmd -f ./config/local.env prisma delete",
+    "prisma-delete-test": "env-cmd -f ./config/test.env prisma delete",
+    "prisma-deploy-test": "env-cmd -f ./config/test.env prisma deploy --force"
+  },
+  "jest": {
+    "globalSetup": "./tests/jest/globalSetup.js",
+    "globalTeardown": "./tests/jest/globalTeardown.js",
+    "setupFilesAfterEnv": [
+      "./tests/jest/defaultTimeout.js"
+    ]
+  },
+  "keywords": [],
+  "author": "Rushikesh Acharya",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "env-cmd": "^10.0.1",
+    "graphql": "^14.5.6",
+    "graphql-yoga": "^1.18.3",
+    "moment": "^2.24.0",
+    "prisma": "^1.34.8",
+    "prisma-binding": "^2.3.15",
+    "prisma-client-lib": "^1.34.8",
+    "unfetch": "^4.1.0"
+  },
+  "devDependencies": {
+    "apollo-boost": "^0.4.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-import-resolver-babel-module": "^5.0.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.5.0",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
+  },
+  "resolutions": {
+    "graphql": "14.5.6"
+  }
+}
