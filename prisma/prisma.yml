@@ -1,0 +1,9 @@
+endpoint: ${env:PRISMA_ENDPOINT}
+secret: ${env:PRISMA_SECRET}
+datamodel: ./datamodel.prisma
+generate:
+  - generator: javascript-client
+    output: ../api/generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma generate
