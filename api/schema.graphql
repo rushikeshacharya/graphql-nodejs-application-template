@@ -1,0 +1,25 @@
+type Task {
+  id: ID!
+  name: String!
+  isCompleted: Boolean!
+}
+
+type Query {
+  tasks: [Task!]!
+  getTaskByStatus(isCompleted: Boolean!): [Task!]!
+}
+
+type Mutation {
+  createTask(name: String!): Task!
+  updateTask(id: ID!, data: UpdateTaskInput!): Task!
+  deleteTask(id: ID!): Task!
+}
+
+input UpdateTaskInput {
+  name: String
+  isCompleted: Boolean
+}
+
+type Subscription {
+  task: Task!
+}
